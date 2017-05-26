@@ -1,0 +1,61 @@
+import java.util.*;
+
+
+public class HDTVClass {
+
+	public static void main(String s[]){
+		assignHDTV ah = new assignHDTV(null, 0);
+		ah.printHDTV();
+	}
+	
+}
+class HDTV{
+	
+	String brandName;
+	int size;
+	HDTV(String brandName, int size) {
+		this.brandName = brandName;
+		this.size = size;//assigns variables as parameters for future use
+	}
+}
+
+class assignHDTV extends HDTV{
+	
+	assignHDTV(String BrandName, int size) {
+		super(BrandName, size);
+	}
+
+	void printHDTV(){
+	
+	ArrayList<HDTV> brandName = new ArrayList<HDTV>();{
+		
+		brandName.add(new HDTV("Samsung", 43));
+		brandName.add(new HDTV("Sony",56));
+		brandName.add(new HDTV("Panasonic",32));//takes in the three objects in HDTV
+		
+		System.out.println("sorting by size...");  
+		  
+		Collections.sort(brandName, new sizeCalculator());  
+		Iterator itr=brandName.iterator();  
+		while(itr.hasNext()){  
+			HDTV st=(HDTV)itr.next();  
+			System.out.println(st.brandName+" "+st.size);//prints the based on the size 
+		}    
+		}
+		}
+	}
+class sizeCalculator implements Comparator{//this class compares the sizes of the three objects
+	
+	public int compare(Object o1,Object o2){  
+			HDTV s1=(HDTV)o1;  
+			HDTV s2=(HDTV)o2;//variables used for size comparison
+			  
+			if(s1.size==s2.size)  
+			return 0;  
+			else if(s1.size >s2.size)  
+			return 1;  
+			else  
+			return -1;  //logic for determining size
+			}
+	
+}
